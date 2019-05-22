@@ -1,5 +1,5 @@
 app = {};
-app.apiNumQuestions = 5;
+app.apiNumQuestions = 1;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
 
@@ -38,7 +38,45 @@ app.apiCall = () => {
 
 // populate questions into the DOM from the array
 app.askQuestions = (questionsArray) => {
-  console.log(questionsArray);
+  // console.log(questionsArray);
+
+  const firstQuestionObject = questionsArray[0];
+  const question = firstQuestionObject.question;
+  const category = firstQuestionObject.category;
+  const incorrectAnswersArray = firstQuestionObject.incorrect_answers;
+  const answer = firstQuestionObject.correct_answer;
+
+  // output question and category
+  $('.trivia-question').html(question);
+  $('.trivia-category').html(category);
+
+  // create new array with both incorrect and correct answer
+  possibleAnswersArray = incorrectAnswersArray.concat([answer])
+  possibleAnswersArray.sort()
+
+  // loop through possible answers and output into input radio fields
+  for(let i = 1; i <= possibleAnswersArray.length; i++) {
+    $(`input#answer${i}`).attr('value', possibleAnswersArray[i - 1]);
+    $(`label[for=answer${i}]`).html(possibleAnswersArray[i - 1]);
+  }
+
+  // listen for click on user submit
+  $('#submit-answer-button').on('click', (e) => {
+    // get the value of the player's answer
+    playerAnswer = $('input[name=testRadio]:checked').val();
+    console.log(playerAnswer)
+    console.log(answer)
+    
+    // check if user's answer is correct
+    if( playerAnswer === answer) {
+      console.log(`YOU'RE RIGHT`)
+    } else {
+      console.log(`WRONG`)
+    }
+
+    e.preventDefault();
+  });
+
 
     // START AT 0
   // WHILE LOOP (UNTIL COUNTER REACHES # QUESTIONS)
