@@ -198,10 +198,39 @@ h1 {
   text-transform: uppercase;
   color: white;
   font-size: 2rem;
+  text-align: center;
 }
 
 .quiz-container {
   border: 2px solid #101010;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  padding: 50px 40px;
+}
+
+.trivia-question-container {
+  width: 90%;
+  background-color: darkgrey;
+  border: 2px solid slategray;
+  padding: 20px;
+  text-align: center;
+}
+
+.answer-container {
+  width: 90%;
 }
 /*# sourceMappingURL=main.css.map */

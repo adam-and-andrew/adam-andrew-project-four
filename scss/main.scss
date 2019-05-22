@@ -8,9 +8,29 @@ h1 {
     text-transform: uppercase;
     color: white;
     font-size: 2rem;
+    text-align: center;
 }
 
 .quiz-container {
     border: 2px solid #101010;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.4);
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 50px 40px;
+}
+
+.trivia-question-container {
+    width: 90%;
+    background-color: darkgrey;
+    border: 2px solid slategray;
+    padding: 20px;
+    text-align: center;
+}
+
+.answer-container {
+    width: 90%;
 }
