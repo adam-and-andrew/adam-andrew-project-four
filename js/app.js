@@ -41,17 +41,18 @@ app.askQuestions = (questionsArray) => {
   // console.log(questionsArray);
 
   const firstQuestionObject = questionsArray[0];
+  
+  app.answer = firstQuestionObject.correct_answer;
   const question = firstQuestionObject.question;
   const category = firstQuestionObject.category;
   const incorrectAnswersArray = firstQuestionObject.incorrect_answers;
-  const answer = firstQuestionObject.correct_answer;
 
   // output question and category
   $('.trivia-question').html(question);
   $('.trivia-category').html(category);
 
   // create new array with both incorrect and correct answer
-  possibleAnswersArray = incorrectAnswersArray.concat([answer])
+  possibleAnswersArray = incorrectAnswersArray.concat([app.answer])
   possibleAnswersArray.sort()
 
   // loop through possible answers and output into input radio fields
@@ -65,14 +66,9 @@ app.askQuestions = (questionsArray) => {
     // get the value of the player's answer
     playerAnswer = $('input[name=testRadio]:checked').val();
     console.log(playerAnswer)
-    console.log(answer)
-    
-    // check if user's answer is correct
-    if( playerAnswer === answer) {
-      console.log(`YOU'RE RIGHT`)
-    } else {
-      console.log(`WRONG`)
-    }
+
+    // call function to check users answer
+    app.checkAnswer(playerAnswer);
 
     e.preventDefault();
   });
@@ -87,6 +83,23 @@ app.askQuestions = (questionsArray) => {
     // CYCLES TO NEXT QUESTION (QUESTIONS COUNTER +1)
 
 };
+
+app.checkAnswer = (playerAnswer) => {
+  // check if user's answer is correct
+  if (playerAnswer === app.answer) {
+    console.log(`YOU'RE RIGHT`)
+    $('.answer-form').fadeOut()
+    $('.answer-result').delay(600).fadeIn()
+  } else {
+    console.log(`WRONG`)
+  }
+}
+
+app.nextQuestion = () => {
+  $('.answer-result-next-question').on('click', () => {
+    
+  })
+}
 
 $(function(){
   app.init();
