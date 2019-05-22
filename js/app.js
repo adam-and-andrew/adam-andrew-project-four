@@ -1,11 +1,13 @@
 app = {};
-app.apiNumQuestions = 1;
+app.apiNumQuestions = 5;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
+app.questionCounter = 0;
 
 // init to run app when document loaded and ready
 app.init = () => {
   app.apiCall();
+  app.nextQuestion();
 }
 
 // function that calls API
@@ -27,7 +29,7 @@ app.apiCall = () => {
         // retrieves the trivia questions from the api
         app.triviaQuestionsArray = data.results;
 
-        app.askQuestions(app.triviaQuestionsArray);
+        app.askQuestions();
 
       } else {
         // alert that something went wrong with the api
@@ -37,12 +39,17 @@ app.apiCall = () => {
 };
 
 // populate questions into the DOM from the array
-app.askQuestions = (questionsArray) => {
+app.askQuestions = () => {
   // console.log(questionsArray);
 
-  const firstQuestionObject = questionsArray[0];
+  console.log(app.questionCounter);
+  console.log(app.triviaQuestionsArray[app.questionCounter]);
+
+  let firstQuestionObject = app.triviaQuestionsArray[app.questionCounter];
+
   
   app.answer = firstQuestionObject.correct_answer;
+  console.log(app.answer)
   const question = firstQuestionObject.question;
   const category = firstQuestionObject.category;
   const incorrectAnswersArray = firstQuestionObject.incorrect_answers;
@@ -88,16 +95,26 @@ app.checkAnswer = (playerAnswer) => {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
     console.log(`YOU'RE RIGHT`)
-    $('.answer-form').fadeOut()
-    $('.answer-result').delay(600).fadeIn()
   } else {
     console.log(`WRONG`)
   }
+  $('.answer-form').fadeOut()
+  $('.answer-result').delay(600).fadeIn()
 }
 
 app.nextQuestion = () => {
   $('.answer-result-next-question').on('click', () => {
-    
+
+    $('.answer-result').fadeOut();
+    $('.answer-form').delay(600).fadeIn();
+
+    console.log("HIIIIIII")
+
+    if (app.questionCounter < app.triviaQuestionsArray.length){
+      app.questionCounter++;
+      app.askQuestions();
+    }
+
   })
 }
 
