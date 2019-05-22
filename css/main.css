@@ -179,6 +179,20 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: hidden;
 }
 
+html {
+  font-size: 125%;
+}
+
+body {
+  background-color: #323232;
+  color: #FAFAFA;
+}
+
+h1, p {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   font-family: 'Righteous', sans-serif;
   text-transform: uppercase;
