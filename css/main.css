@@ -178,4 +178,16 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   clip: rect(0 0 0);
   overflow: hidden;
 }
+
+h1 {
+  font-family: 'Righteous', sans-serif;
+  text-transform: uppercase;
+  color: white;
+  font-size: 2rem;
+}
+
+.quiz-container {
+  border: 2px solid #101010;
+  background-color: rgba(255, 255, 255, 0.1);
+}
 /*# sourceMappingURL=main.css.map */
