@@ -233,4 +233,19 @@ h1 {
 .answer-container {
   width: 90%;
 }
+
+.answer-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.radio-button-container {
+  width: 50%;
+  border: 1px solid black;
+  padding: 5px;
+}
 /*# sourceMappingURL=main.css.map */

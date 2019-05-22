@@ -34,3 +34,15 @@ h1 {
 .answer-container {
     width: 90%;
 }
+
+.answer-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.radio-button-container {
+    width: 50%;
+    border: 1px solid black;
+    padding: 5px;
+}
