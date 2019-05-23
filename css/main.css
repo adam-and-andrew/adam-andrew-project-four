@@ -195,10 +195,6 @@ h1, p {
 }
 
 .intro-container {
-  background-image: url("../assets/black-light-bulbs.jpg");
-  background-size: cover;
-  background-position: 100%;
-  background-color: #161616;
   height: 100vh;
   background-repeat: no-repeat;
   display: -webkit-box;
@@ -234,7 +230,6 @@ h1 {
 
 .quiz-container {
   border: 2px solid #101010;
-  background-color: rgba(255, 255, 255, 0.3);
   width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -303,12 +298,8 @@ h1 {
   margin: 0 auto;
 }
 
+input:checked ~ label,
 input:focus ~ label {
-  background-color: #C4A36E;
-  color: black;
-}
-
-input:checked ~ label {
   background-color: #C4A36E;
   color: black;
   -webkit-transition: all 1s;
@@ -362,5 +353,12 @@ input:checked ~ label {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   margin: 1rem 0;
+}
+
+main {
+  background-image: url("../assets/black-light-bulbs.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
 /*# sourceMappingURL=main.css.map */
