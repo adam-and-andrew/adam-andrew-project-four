@@ -294,13 +294,18 @@ h1 {
 }
 
 .testRadio {
-  visibility: hidden;
   position: absolute;
+  right: 100%;
 }
 
 .submit-answer-button {
   display: block;
   margin: 0 auto;
+}
+
+input:focus ~ label {
+  background-color: #C4A36E;
+  color: black;
 }
 
 input:checked ~ label {

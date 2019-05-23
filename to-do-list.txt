@@ -17,3 +17,9 @@ Styling:
 Error Handling:
 - Make sure user has selected an option before clicking submit
 - Catch error if something goes wrong from API call (response code) 1 = no results, 2 = invalid search parameter
+
+Instructions:
+Adam & Andrew's Trivia Game!
+Pick a Trivia Category & Difficulty
+You'll get 10 Questions to Answer
+Good Luck!
