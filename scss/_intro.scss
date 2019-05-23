@@ -1,20 +1,46 @@
 .intro-container {
-    height: 100vh;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
 }
 
+// centered on screen via parent container
 .intro-textbox {
-    text-align:center;
-    border: 2px solid $highlight-colour;
-    width: 80%;
-    border-radius: 25px;
-    // background-color: rgba(30,30,30,0.6)
+  text-align: center;
+  width: 80%;
+  border-radius: 25px;
 }
 
 .intro-heading {
-    font-size: 200%;
-    margin: 60px 0 30px 0;
+  text-shadow: 5px 5px $highlight-colour;
+  font-size: 6rem;
+  margin: 80px 0 0 0;
+  text-align: left;
+
+  &-sub {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px $highlight-colour;
+  }
+}
+
+.intro-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  margin: 2rem 1rem;
+  width: 250px;
+	background-color: rgba( 0, 0, 0, 0.9);
+  border: 2px solid orange;
+  border-radius: 20px;
+  padding: 5px;
+  text-align: center;
+  color: orange;
+
+	background-image: url(../assets/caret-down.svg);
+	background-size: 4%;
+	background-repeat: no-repeat;
+	background-position: 95% center;
+
 }
