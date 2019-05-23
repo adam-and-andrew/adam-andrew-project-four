@@ -1,18 +1,15 @@
 REMEMBER TO DELETE THIS FILE!
 
 General:
-- Welcome
 - Instructions for play
 
 Gameplay:
-- Make user choices funcational
 - Player Score 0/X
-- Modal appears at end to inform user game over and their score
+- functional game over modal
 
 Styling:
-- Style user choices
-- Radio Inputs (classes)
-- Correct/Incorrect Answer Syling and Output
+- Correct/Incorrect Answer styling
+- Style gameover modal
 
 Error Handling:
 - Make sure user has selected an option before clicking submit

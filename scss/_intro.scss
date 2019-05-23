@@ -15,7 +15,7 @@
 .intro-heading {
   text-shadow: 5px 5px $highlight-colour;
   font-size: 6rem;
-  margin: 80px 0 0 0;
+  margin: 50px 0 20px 0;
   text-align: left;
 
   &-sub {
@@ -29,12 +29,15 @@
   -webkit-appearance: none;
   appearance: none;
 
-  margin: 2rem 1rem;
-  width: 250px;
+  margin: 20px 15px;
+  padding: 5px 15px;
+
+  width: 300px;
 	background-color: rgba( 0, 0, 0, 0.9);
   border: 2px solid orange;
   border-radius: 20px;
   padding: 5px;
+  font-size: 1.5rem;
   text-align: center;
   color: orange;
 
@@ -42,5 +45,10 @@
 	background-size: 4%;
 	background-repeat: no-repeat;
 	background-position: 95% center;
+}
 
+.intro-buttons input,
+.intro-buttons button {
+  width: 300px;
+  margin: 20px 15px;
 }
