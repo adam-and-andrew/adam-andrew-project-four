@@ -75,13 +75,35 @@ h1 {
 .radio-button-container {
     width: calc(50% - 10px);
     border: 1px solid black;
-    padding: 5px;
+    // padding: 5px;
     margin: 5px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
+}
+
+.radio-button-label {
+    display: block;
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.testRadio {
+    visibility: hidden;
+    position: absolute;
 }
 
 .submit-answer-button {
     display: block;
     margin: 0 auto;
+}
+
+input:checked ~ label {
+    background-color: $highlight-colour;
+    color: black;
+    transition: all 1s;
 }
 
 .answer-result {
