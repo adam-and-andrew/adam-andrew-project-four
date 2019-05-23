@@ -106,7 +106,8 @@ app.nextQuestion = () => {
 
     // if there are no more questions stops the game
     } else if ((app.questionCounter + 1) === app.triviaQuestionsArray.length) {
-      console.log('game over')
+      console.log('game over');
+      $('.gameover-modal').fadeIn();
     };
 
   })
