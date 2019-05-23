@@ -80,8 +80,12 @@ app.checkAnswer = (playerAnswer) => {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
     console.log(`YOU'RE RIGHT`)
+    $('.answer-result-title').html('CORRECT');
+    $('.answer-result-correct-answer').html('');
   } else {
     console.log(`WRONG`)
+    $('.answer-result-title').html('INCORRECT');
+    $('.answer-result-correct-answer').html(`Correct Answer: ${app.answer}`);
   }
   $('.answer-form').fadeOut()
   $('.answer-result').delay(400).fadeIn()
