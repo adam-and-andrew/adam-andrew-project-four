@@ -18,7 +18,14 @@
 
 <body>
 
-    <h1>Trivia Quiz</h1>
+    <div class="intro-container">
+        <div class="intro-textbox">
+            <h1 class="intro-heading">Trivia Quiz! <i class="far fa-lightbulb"></i></h1>
+            
+        </div>
+    </div>
+
+    <h1>Trivia Quiz!</h1>
 
     <div class="quiz-container">
 
@@ -29,7 +36,7 @@
 
         <div class="answer-container">
             <form class="answer-form">
-                
+
                 <div class="radio-button-container">
 
                     <input type="radio" value='1' name='testRadio' value='1' id='answer1' class="testRadio">
@@ -63,7 +70,16 @@
                 <p>Dexter</p>
                 <button class="answer-result-next-question">NEXT</button>
             </div>
-            
+
+            <!-- game outcome modal -->
+            <div class="gameover-modal">
+                <div class="gameover-modal-text-container">
+                    <h2 class="gameover-modal-title">Game Over</h2>
+                    <p class="gameover-modal-message">Thanks for Playing</p>
+                    <p class="gameover-modal-score">score: <span class="play-modal-score-output"></span></p>
+                </div>
+            </div><!-- modals ends -->
+
         </div>
     </div>
     <div class="player-scores-container">
@@ -72,7 +88,8 @@
         </div>
     </div>
 
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'
+        integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
     <script src="js/app.js"></script>
 </body>
 

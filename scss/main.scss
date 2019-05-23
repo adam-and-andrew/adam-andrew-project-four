@@ -3,6 +3,19 @@
 @import './config';
 
 
+//INTRO SCREEN
+
+.intro-container {
+    background-image: url("../assets/black-light-bulbs.jpg");
+    background-size: cover;
+    background-position: 100%;
+    background-color: #161616;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+
+// MAIN GAME SCREEN
 h1 {
     font-family: 'Righteous', sans-serif;
     text-transform: uppercase;
@@ -11,9 +24,14 @@ h1 {
     text-align: center;
 }
 
+.intro-heading {
+    font-size: 200%;
+    padding: 60px 0 30px 0;
+}
+
 .quiz-container {
     border: 2px solid #101010;
-    background-color: rgba(255,255,255,0.4);
+    background-color: rgba(255,255,255,0.3);
     width: 95%;
     display: flex;
     justify-content: center;
@@ -21,6 +39,8 @@ h1 {
     flex-direction: column;
     margin: 0 auto;
     padding: 50px 40px;
+
+    display: none;
 }
 
 .trivia-question-container {
@@ -61,4 +81,47 @@ h1 {
     text-align: center;
     padding: 20px;
     // display: none;
+}
+
+
+// gameover modal pop up for game ending
+.gameover-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+
+  text-align: center;
+
+  &-text-container {
+    border-radius: 2rem;
+    background-color: rgb(72, 70, 70);
+    width: 70%;
+    margin: 2% auto;
+    padding: 1rem 0;
+  }
+
+  &-title {
+    text-transform: uppercase;
+    font-size: 5rem;
+    letter-spacing: 0.2rem;
+  }
+
+  &-message {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  &-score {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin: 1rem 0;
+  }
 }
