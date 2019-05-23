@@ -1,140 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="css/main.css">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-    <link href="https://fonts.googleapis.com/css?family=Righteous|Roboto:400,700&display=swap" rel="stylesheet">
-
+    
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+    />
+    
+    <link
+    href="https://fonts.googleapis.com/css?family=Righteous|Roboto:400,700&display=swap"
+    rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="css/main.css" />
     <title>Trivia Quiz</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-
-    <section class="intro">
+      <section class="intro">
         <div class="intro-container">
-            <div class="intro-textbox">
-                <h1 class="intro-heading">Trivia Quiz! <i class="far fa-lightbulb"></i></h1>
-                <form action="" class="intro-form">
-                    <label for="trivia-category" class="visuallyHidden">Select Trivia Category</label>
-                    <select id="trivia-category">
-                        <option value="" disabled selected>Trivia Categories</option>
-                        <option value="">ALL</option>
-                        <option value="9">General Knowledge</option>
-                        <option value="10">Books</option>
-                        <option value="11">Film</option>
-                        <option value="12">Music</option>
-                        <option value="13">Musicals & Theatre</option>
-                        <option value="14">Television</option>
-                        <option value="31">Anime & Manga</option>
-                        <option value="32">Cartoons & Animation</option>
-                        <option value="29">Comic Books</option>
-                        <option value="15">Video Games</option>
-                        <option value="16">Board Games</option>
-                        <option value="17">Science & Nature</option>
-                        <option value="18">Computers</option>
-                        <option value="19">Mathematics</option>
-                        <option value="30">Gadgets & Technology</option>
-                        <option value="20">Mythology</option>
-                        <option value="21">Sports</option>
-                        <option value="22">Geography</option>
-                        <option value="23">History</option>
-                        <option value="24">Politics</option>
-                        <option value="25">Art</option>
-                        <option value="26">Celebrities</option>
-                        <option value="27">Animals</option>
-                        <option value="28">Vehicles</option>
-                    </select>
+          <div class="intro-textbox">
+            <h1 class="intro-heading">Trivia Quiz! <i class="far fa-lightbulb"></i></h1>
+            <form action="" class="intro-form">
+              <label for="trivia-category" class="visuallyHidden">Select Trivia Category</label>
+              <select id="trivia-category">
+                <option value="" disabled selected>Trivia Categories</option>
+                <option value="">ALL</option>
+                <option value="9">General Knowledge</option>
+                <option value="10">Books</option>
+                <option value="11">Film</option>
+                <option value="12">Music</option>
+                <option value="13">Musicals & Theatre</option>
+                <option value="14">Television</option>
+                <option value="31">Anime & Manga</option>
+                <option value="32">Cartoons & Animation</option>
+                <option value="29">Comic Books</option>
+                <option value="15">Video Games</option>
+                <option value="16">Board Games</option>
+                <option value="17">Science & Nature</option>
+                <option value="18">Computers</option>
+                <option value="19">Mathematics</option>
+                <option value="30">Gadgets & Technology</option>
+                <option value="20">Mythology</option>
+                <option value="21">Sports</option>
+                <option value="22">Geography</option>
+                <option value="23">History</option>
+                <option value="24">Politics</option>
+                <option value="25">Art</option>
+                <option value="26">Celebrities</option>
+                <option value="27">Animals</option>
+                <option value="28">Vehicles</option>
+              </select>
 
-                    <label for="trivia-difficulty" class="visuallyHidden">Select Trivia Difficulty</label>
-                    <select id="trivia-difficulty">
-                        <option value="" disabled selected>Trivia Difficulty</option>
-                        <option value="">ALL</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
+              <label for="trivia-difficulty" class="visuallyHidden">Select Trivia Difficulty</label>
+              <select id="trivia-difficulty">
+                <option value="" disabled selected>Trivia Difficulty</option>
+                <option value="">ALL</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
 
-                    <input type="submit" value="SUBMIT AND PROCEED" id="intro-form-submit" class="intro-form-submit">
-                </form>
-            </div>
+              <input
+                type="submit"
+                value="SUBMIT AND PROCEED"
+                id="intro-form-submit"
+                class="intro-form-submit"
+              />
+            </form>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section class="quiz-container">
-                <h1>Trivia Quiz!</h1>
+      <section class="quiz-container">
+        <h1>Trivia Quiz!</h1>
 
-            <div class="trivia-question-container">
-                <p class="trivia-question"></p>
-                <p class="trivia-category"></p>
+        <div class="trivia-question-container">
+          <p class="trivia-question"></p>
+          <p class="trivia-category-heading">Category:</p>
+          <p class="trivia-category"></p>
+        </div>
+
+        <div class="answer-container">
+          <form class="answer-form">
+            <div class="radio-button-container">
+              <input
+                type="radio"
+                value="1"
+                name="testRadio"
+                value="1"
+                id="answer1"
+                class="testRadio"
+              />
+              <label for="answer1" class="radio-button-label"></label>
             </div>
 
-            <div class="answer-container">
-                <form class="answer-form">
-
-                    <div class="radio-button-container">
-
-                        <input type="radio" value='1' name='testRadio' value='1' id='answer1' class="testRadio">
-                        <label for="answer1" class="radio-button-label"></label>
-
-                    </div>
-
-                    <div class="radio-button-container">
-
-                        <input type="radio" value='3' name='testRadio' value='2' id='answer2' class="testRadio">
-                        <label for="answer2" class="radio-button-label"></label>
-
-                    </div>
-
-                    <div class="radio-button-container">
-                        <input type="radio" value='2' name='testRadio' value='3' id='answer3' class="testRadio">
-                        <label for="answer3" class="radio-button-label"></label>
-                    </div>
-
-                    <div class="radio-button-container">
-                        <input type="radio" value='4' name='testRadio' value='4' id='answer4' class="testRadio">
-                        <label for="answer4" class="radio-button-label"></label>
-                    </div>
-
-                    <label for="submit-answer-button" class="visuallyHidden">Submit</label>
-                    <input type="submit" value="SUBMIT" id="submit-answer-button" class="submit-answer-button">
-                </form>
-
-                <div class="answer-result">
-                    <p class="answer-result-title"></p>
-                    <p class="answer-result-correct-answer"></p>
-                    <button class="answer-result-next-question">NEXT</button>
-                </div>
-
-                <!-- game outcome modal -->
-                <div class="gameover-modal">
-                    <div class="gameover-modal-text-container">
-                        <h2 class="gameover-modal-title">Game Over</h2>
-                        <p class="gameover-modal-message">Thanks for Playing</p>
-                        <p class="gameover-modal-score">score: <span class="play-modal-score-output"></span></p>
-                    </div>
-                </div><!-- modals ends -->
-
+            <div class="radio-button-container">
+              <input
+                type="radio"
+                value="3"
+                name="testRadio"
+                value="2"
+                id="answer2"
+                class="testRadio"
+              />
+              <label for="answer2" class="radio-button-label"></label>
             </div>
+
+            <div class="radio-button-container">
+              <input
+                type="radio"
+                value="2"
+                name="testRadio"
+                value="3"
+                id="answer3"
+                class="testRadio"
+              />
+              <label for="answer3" class="radio-button-label"></label>
+            </div>
+
+            <div class="radio-button-container">
+              <input
+                type="radio"
+                value="4"
+                name="testRadio"
+                value="4"
+                id="answer4"
+                class="testRadio"
+              />
+              <label for="answer4" class="radio-button-label"></label>
+            </div>
+
+            <label for="submit-answer-button" class="visuallyHidden">Submit</label>
+            <input
+              type="submit"
+              value="SUBMIT"
+              id="submit-answer-button"
+              class="submit-answer-button"
+            />
+          </form>
+
+          <div class="answer-result">
+            <p class="answer-result-title"></p>
+            <p class="answer-result-correct-answer"></p>
+            <button class="answer-result-next-question">NEXT</button>
+          </div>
+
+          <!-- game outcome modal -->
+          <div class="gameover-modal">
+            <div class="gameover-modal-text-container">
+              <h2 class="gameover-modal-title">Game Over</h2>
+              <p class="gameover-modal-message">Thanks for Playing</p>
+              <p class="gameover-modal-score">
+                score: <span class="play-modal-score-output"></span>
+              </p>
+            </div>
+          </div>
+          <!-- modals ends -->
+        </div>
         <div class="player-scores-container">
-            <div class="player-score-box">
-                <p>Player Score:</p>
-            </div>
+          <div class="player-score-box">
+            <p>Player Score:</p>
+          </div>
         </div>
-    </section>
-</main>
+      </section>
+    </main>
 
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js'
-        integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous'></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"
+    ></script>
     <script src="js/app.js"></script>
-</body>
-
+  </body>
 </html>
