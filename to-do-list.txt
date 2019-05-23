@@ -1,15 +1,16 @@
 REMEMBER TO DELETE THIS FILE!
 
 General:
-- Welcome/Hero
+- Welcome
 - Instructions for play
 
 Gameplay:
-- User choice for number of difficulty and category
+- Make user choices funcational
 - Player Score 0/X
 - Modal appears at end to inform user game over and their score
 
 Styling:
+- Style user choices
 - Radio Inputs (classes)
 - Correct/Incorrect Answer Syling and Output
 
