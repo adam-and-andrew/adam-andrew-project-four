@@ -7,6 +7,7 @@ app.questionCounter = 0;
 // init to run app when document loaded and ready
 app.init = () => {
   app.apiCall();
+  app.introScreen();
   app.nextQuestion();
 };
 
@@ -111,6 +112,22 @@ app.nextQuestion = () => {
     };
 
   })
+}
+
+//Introduction screen form submission and proceeding to the game
+app.introScreen = () => {
+  $('.intro-form-submit').on('click', (e) => {
+
+    //fade out the intro screen and fades in the main game screen
+    $('.intro-container').fadeOut();
+    $('.quiz-container').delay(400).fadeIn();
+
+    //resets the div container holding the game back to flexbox from display: none to be properly centered
+    $('.quiz-container').css('display', 'flex');
+
+    //stop the submit button from refreshing the page when clicked
+    e.preventDefault();
+  });
 }
 
 $(function(){

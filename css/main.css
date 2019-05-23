@@ -229,6 +229,7 @@ h1 {
   text-transform: uppercase;
   color: white;
   font-size: 2rem;
+  text-align: center;
 }
 
 .quiz-container {
