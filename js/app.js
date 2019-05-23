@@ -1,5 +1,5 @@
 app = {};
-app.apiNumQuestions = 5;
+app.apiNumQuestions = 2;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
 app.questionCounter = 0;
@@ -8,7 +8,7 @@ app.questionCounter = 0;
 app.init = () => {
   app.apiCall();
   app.nextQuestion();
-}
+};
 
 // function that calls API
 app.apiCall = () => {
@@ -40,19 +40,14 @@ app.apiCall = () => {
 
 // populate questions into the DOM from the array
 app.askQuestions = () => {
-  // console.log(questionsArray);
-
-  console.log(app.questionCounter);
-  console.log(app.triviaQuestionsArray[app.questionCounter]);
-
-  let firstQuestionObject = app.triviaQuestionsArray[app.questionCounter];
-
+  const questionObject = app.triviaQuestionsArray[app.questionCounter];
   
-  app.answer = firstQuestionObject.correct_answer;
-  console.log(app.answer)
-  const question = firstQuestionObject.question;
-  const category = firstQuestionObject.category;
-  const incorrectAnswersArray = firstQuestionObject.incorrect_answers;
+  app.answer = questionObject.correct_answer;
+  console.log(`Answer is:`, app.answer)
+
+  const question = questionObject.question;
+  const category = questionObject.category;
+  const incorrectAnswersArray = questionObject.incorrect_answers;
 
   // output question and category
   $('.trivia-question').html(question);
@@ -72,25 +67,15 @@ app.askQuestions = () => {
   $('#submit-answer-button').on('click', (e) => {
     // get the value of the player's answer
     playerAnswer = $('input[name=testRadio]:checked').val();
-    console.log(playerAnswer)
 
     // call function to check users answer
     app.checkAnswer(playerAnswer);
 
     e.preventDefault();
   });
-
-
-    // START AT 0
-  // WHILE LOOP (UNTIL COUNTER REACHES # QUESTIONS)
-    // ASK QUESTION
-    // USER ANSWERS
-    // CHECK IF CORRECT
-    // USER CLICKS NEXT
-    // CYCLES TO NEXT QUESTION (QUESTIONS COUNTER +1)
-
 };
 
+// function that checks player answer
 app.checkAnswer = (playerAnswer) => {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
@@ -99,21 +84,26 @@ app.checkAnswer = (playerAnswer) => {
     console.log(`WRONG`)
   }
   $('.answer-form').fadeOut()
-  $('.answer-result').delay(600).fadeIn()
+  $('.answer-result').delay(400).fadeIn()
 }
 
+// next question button
 app.nextQuestion = () => {
-  $('.answer-result-next-question').on('click', () => {
+  $('.answer-result-next-question').on('click', (e) => {
+    // removed the checked property on the inputs
+    $('.testRadio').prop('checked', false);
 
-    $('.answer-result').fadeOut();
-    $('.answer-form').delay(600).fadeIn();
-
-    console.log("HIIIIIII")
-
-    if (app.questionCounter < app.triviaQuestionsArray.length){
+    // if there are unanswered questions in the array iterates the question counter and asks next question
+    if ((app.questionCounter + 1) < app.triviaQuestionsArray.length){
       app.questionCounter++;
+      $('.answer-result').fadeOut();
+      $('.answer-form').delay(400).fadeIn();
       app.askQuestions();
-    }
+
+    // if there are no more questions stops the game
+    } else if ((app.questionCounter + 1) === app.triviaQuestionsArray.length) {
+      console.log('game over')
+    };
 
   })
 }

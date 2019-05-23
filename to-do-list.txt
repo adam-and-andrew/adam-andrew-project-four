@@ -1,0 +1,18 @@
+REMEMBER TO DELETE THIS FILE!
+
+General:
+- Welcome/Hero
+- Instructions for play
+
+Gameplay:
+- User choice for number of difficulty and category
+- Player Score 0/X
+- Modal appears at end to inform user game over and their score
+
+Styling:
+- Radio Inputs (classes)
+- Correct/Incorrect Answer Syling and Output
+
+Error Handling:
+- Make sure user has selected an option before clicking submit
+- Catch error if something goes wrong from API call (response code) 1 = no results, 2 = invalid search parameter
