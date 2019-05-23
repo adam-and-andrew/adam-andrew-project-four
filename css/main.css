@@ -201,6 +201,27 @@ h1, p {
   background-color: #161616;
   height: 100vh;
   background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.intro-textbox {
+  text-align: center;
+  border: 2px solid #C4A36E;
+  width: 80%;
+  border-radius: 25px;
+}
+
+.intro-heading {
+  font-size: 200%;
+  margin: 60px 0 30px 0;
 }
 
 h1 {
@@ -208,12 +229,6 @@ h1 {
   text-transform: uppercase;
   color: white;
   font-size: 2rem;
-  text-align: center;
-}
-
-.intro-heading {
-  font-size: 200%;
-  padding: 60px 0 30px 0;
 }
 
 .quiz-container {

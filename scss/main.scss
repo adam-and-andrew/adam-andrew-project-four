@@ -12,8 +12,23 @@
     background-color: #161616;
     height: 100vh;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.intro-textbox {
+    text-align:center;
+    border: 2px solid $highlight-colour;
+    width: 80%;
+    border-radius: 25px;
+    // background-color: rgba(30,30,30,0.6)
+}
+
+.intro-heading {
+    font-size: 200%;
+    margin: 60px 0 30px 0;
+}
 
 // MAIN GAME SCREEN
 h1 {
@@ -21,13 +36,8 @@ h1 {
     text-transform: uppercase;
     color: white;
     font-size: 2rem;
-    text-align: center;
 }
 
-.intro-heading {
-    font-size: 200%;
-    padding: 60px 0 30px 0;
-}
 
 .quiz-container {
     border: 2px solid #101010;
