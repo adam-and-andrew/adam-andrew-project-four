@@ -6,7 +6,6 @@ app.questionCounter = 0;
 
 // init to run app when document loaded and ready
 app.init = () => {
-  app.apiCall();
   app.introScreen();
   app.nextQuestion();
 };
@@ -134,9 +133,6 @@ app.introScreen = () => {
       // resets the div container holding the game back to flexbox from display: none to be properly centered
       $('.quiz-container').css('display', 'flex');
     }
-    
-
-    
     // stop the submit button from refreshing the page when clicked
     e.preventDefault();
   });
