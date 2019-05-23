@@ -203,21 +203,42 @@ h1, p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .intro-textbox {
   text-align: center;
-  border: 2px solid #C4A36E;
   width: 80%;
   border-radius: 25px;
 }
 
 .intro-heading {
-  font-size: 200%;
-  margin: 60px 0 30px 0;
+  text-shadow: 5px 5px #C4A36E;
+  font-size: 6rem;
+  margin: 80px 0 0 0;
+  text-align: left;
+}
+
+.intro-heading-sub {
+  font-size: 1.2rem;
+  text-shadow: 2px 2px #C4A36E;
+}
+
+.intro-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 2rem 1rem;
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 2px solid orange;
+  border-radius: 20px;
+  padding: 5px;
+  text-align: center;
+  color: orange;
+  background-image: url(../assets/caret-down.svg);
+  background-size: 4%;
+  background-repeat: no-repeat;
+  background-position: 95% center;
 }
 
 h1 {
@@ -359,6 +380,8 @@ main {
   background-image: url("../assets/black-light-bulbs.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh;
+  max-height: 100vh;
 }
 /*# sourceMappingURL=main.css.map */
