@@ -114,18 +114,30 @@ app.nextQuestion = () => {
   })
 }
 
-//Introduction screen form submission and proceeding to the game
+// Introduction screen form submission and proceeding to the game
 app.introScreen = () => {
   $('.intro-form-submit').on('click', (e) => {
 
-    //fade out the intro screen and fades in the main game screen
-    $('.intro-container').fadeOut();
-    $('.quiz-container').delay(400).fadeIn();
+    
+    // Get the information for the api call from the user for question category and question difficulty
+    app.apiCategory = $('#trivia-category').val();
+    app.apiDifficulty = $('#trivia-difficulty').val();
+    
+    if(app.category === null || app.apiDifficulty === null) {
+      alert("Invalid Selection");
+    } else {
+      app.apiCall();
+      // fade out the intro screen and fades in the main game screen
+      $('.intro-container').fadeOut();
+      $('.quiz-container').delay(400).fadeIn();
+      
+      // resets the div container holding the game back to flexbox from display: none to be properly centered
+      $('.quiz-container').css('display', 'flex');
+    }
+    
 
-    //resets the div container holding the game back to flexbox from display: none to be properly centered
-    $('.quiz-container').css('display', 'flex');
-
-    //stop the submit button from refreshing the page when clicked
+    
+    // stop the submit button from refreshing the page when clicked
     e.preventDefault();
   });
 }
