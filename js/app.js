@@ -1,5 +1,5 @@
 app = {};
-app.apiNumQuestions = 2;
+app.apiNumQuestions = 1;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
 app.questionCounter = 0;
@@ -15,7 +15,6 @@ app.init = () => {
 app.introScreen = function() {
   $('.intro-form-submit').on('click', (e) => {
 
-    
     // Get the information for the api call from the user for question category and question difficulty
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();

@@ -15,3 +15,10 @@ Styling:
 
 Error Handling:
 - It's automatically selecting stuff...Weird.
+- Fade In/Out issue when Next is clicked after question
+
+Multiple Players:
+Initiate a player counter.
+After every round of questions asked step up the counter.
+If the counter = number of players selected counter resets.
+Create Player spaces and score with for loop to dynamically create the divs where the players score would be
