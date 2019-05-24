@@ -3,12 +3,14 @@ app.apiNumQuestions = 1;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
 app.questionCounter = 0;
+app.playerScore = 0;
 
 // init to run app when document loaded and ready
 app.init = () => {
   app.introScreen();
   app.instructions();
   app.nextQuestion();
+  app.updateScore();
 };
 
 // Introduction screen form submission and proceeding to the game
@@ -89,7 +91,7 @@ app.askQuestions = function() {
   const questionObject = app.triviaQuestionsArray[app.questionCounter];
   
   app.answer = questionObject.correct_answer;
-  console.log(`Answer is:`, app.answer)
+  console.log(app.answer);
 
   const question = questionObject.question;
   const category = questionObject.category;
@@ -125,16 +127,24 @@ app.askQuestions = function() {
 app.checkAnswer = function(playerAnswer) {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
-    console.log(`YOU'RE RIGHT`)
+
+    // adds to playerscore
+    app.playerScore++
+    app.updateScore(app.playerScore);
+
     $('.answer-result-title').html('CORRECT');
     $('.answer-result-correct-answer').html('');
   } else {
-    console.log(`WRONG`)
     $('.answer-result-title').html('INCORRECT');
     $('.answer-result-correct-answer').html(`Correct Answer: ${app.answer}`);
   }
+
   $('.answer-form').fadeOut()
   $('.answer-result').delay(400).fadeIn()
+}
+
+app.updateScore = function () {
+  $('.player-score-output').html(app.playerScore);
 }
 
 // next question button
@@ -152,7 +162,6 @@ app.nextQuestion = function() {
 
     // if there are no more questions stops the game
     } else if ((app.questionCounter + 1) === app.triviaQuestionsArray.length) {
-      console.log('game over');
       $('.gameover-modal').fadeIn();
     };
 
