@@ -5,6 +5,32 @@ app.apiDifficulty = undefined;
 app.questionCounter = 0;
 app.playerScore = 0;
 
+app.fontAwesome = {
+  'General Knowledge': 'graduation-cap',
+  'Entertainment: Books': 'book',
+  'Entertainment: Film': 'video',
+  'Entertainment: Music': 'music',
+  'Entertainment: Musicals & Theatre': 'theatre-masks',
+  'Entertainment: Television': 'tv',
+  'Entertainment: Video Games': 'gamepad',
+  'Entertainment: Board Games': 'dice-six',
+  'Science & Nature': 'atom',
+  'Science: Computers': 'laptop',
+  'Science: Mathematics': 'calculator',
+  'Mythology': 'ankh',
+  'Sports': 'basket-ball',
+  'Geography': 'globe-americas',
+  'History': 'scroll',
+  'Politics': 'landmark',
+  'Celebrities': 'users',
+  'Animals': 'paw',
+  'Vehicles': 'car',
+  'Entertainment: Comics': 'book-open',
+  'Science: Gadgets': 'cogs',
+  'Entertainment: Japanese Anime & Manga': 'user-ninja',
+  'Entertainment: Cartoon & Animations': 'grin-tongue-squint'
+}
+
 // init to run app when document loaded and ready
 app.init = () => {
   app.introScreen();
@@ -35,6 +61,13 @@ app.introScreen = function() {
     // stop the submit button from refreshing the page when clicked
     e.preventDefault();
   });
+}
+
+
+app.iconCategory = function (category) {
+
+  return app.fontAwesome[category];
+  
 }
 
 app.instructions = function() {
@@ -99,7 +132,7 @@ app.askQuestions = function() {
 
   // output question and category
   $('.trivia-question').html(question);
-  $('.trivia-category').html(category);
+  $('.trivia-category').html(`<span><i class="fas fa-${app.iconCategory(category)}"></i></span> ${category}`);
 
   // create new array with both incorrect and correct answer
   possibleAnswersArray = incorrectAnswersArray.concat([app.answer])

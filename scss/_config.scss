@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: #323232;
+  background-color: $bg-color;
   color: #fafafa;
 
   font-family: 'Roboto', sans-serif;
@@ -13,6 +13,11 @@ h1,
 p {
   margin: 0;
   padding: 0;
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .button {
