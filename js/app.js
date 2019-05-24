@@ -3,8 +3,13 @@ app.apiNumQuestions = 5;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
 app.questionCounter = 0;
-app.playerCount = 1;
-app.playerScore = 0;
+app.turnCount = 1;
+app.playerScore = {
+  player1: 0,
+  player2: 0,
+  player3: 0,
+  player4: 0
+};
 
 app.fontAwesome = {
   'General Knowledge': 'graduation-cap',
@@ -36,6 +41,7 @@ app.fontAwesome = {
 app.init = () => {
   app.introScreen();
   app.instructions();
+  app.playerTurn();
   app.nextQuestion();
   app.updateScore();
 };
@@ -46,7 +52,11 @@ app.introScreen = function() {
     // Get the information for the api call from the user for question category, question difficulty, and number of players
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();
-    app.playerCount = $('#trivia-players').val();
+    // get the number of players and convert string to number
+    app.playerCount = parseInt($('#trivia-players').val());
+
+    //updates the turn counter
+    app.playerTurn();
 
     //create score boxes
     app.createPlayers();
@@ -73,15 +83,22 @@ app.introScreen = function() {
 };
 
 app.createPlayers = function() {
-
   for (let i = 1; i <= app.playerCount; i++) {
     const playerScoreOutput = $('<p>').html(
-      `Player ${i} Score: <br><span class="player${i}-score-output">0</span>/10`);
+      `Player ${i} Score: <br><span class="player${i}-score-output">0</span>`);
 
     const playerScoreBox = $('<div>')
       .addClass(`player${i}-score-box score-box`)
       .html(playerScoreOutput);
     $('.player-scores-container').append(playerScoreBox);
+  }
+};
+
+app.playerTurnOutput = function() {
+  if (app.playerCount === 1) {
+    $('.player-turn').css('display', 'none');
+  } else {
+    $('.player-turn-output').html(app.turnCount);
   }
 };
 
@@ -141,11 +158,10 @@ app.apiCall = function() {
 };
 
 // populate questions into the DOM from the array
-app.askQuestions = function() {
+app.askQuestions = function() { 
   const questionObject = app.triviaQuestionsArray[app.questionCounter];
 
   app.answer = questionObject.correct_answer;
-  console.log(app.answer);
 
   const question = questionObject.question;
   const category = questionObject.category;
@@ -188,8 +204,10 @@ app.checkAnswer = function(playerAnswer) {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
     // adds to playerscore
-    app.playerScore++;
-    app.updateScore(app.playerScore);
+    app.playerScore[`player${app.turnCount}`]++;
+    console.log(app.playerScore);
+
+    app.updateScore();
 
     $('.answer-result-title').html('CORRECT');
     $('.answer-result-correct-answer').html('');
@@ -199,13 +217,11 @@ app.checkAnswer = function(playerAnswer) {
   }
 
   $('.answer-form').fadeOut();
-  $('.answer-result')
-    .delay(400)
-    .fadeIn();
+  $('.answer-result').delay(400).fadeIn();
 };
 
 app.updateScore = function() {
-  $('.player-score-output').html(app.playerScore);
+  $(`.player${app.turnCount}-score-output`).html(app.playerScore[`player${app.turnCount}`]);
 };
 
 // next question button
@@ -227,6 +243,16 @@ app.nextQuestion = function() {
     } else if (app.questionCounter + 1 === app.triviaQuestionsArray.length) {
       $('.gameover-modal').fadeIn();
     }
+
+    // increases the turn counter or resets it based on number of players
+    if (app.turnCount === app.playerCount) {
+      app.turnCount = 1;
+    } else if (app.turnCount < app.playerCount) {
+      app.turnCount++
+    };
+
+    // update the turn count
+    app.playerTurnOutput();
   });
 };
 
