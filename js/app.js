@@ -18,19 +18,19 @@ app.fontAwesome = {
   'Science & Nature': 'atom',
   'Science: Computers': 'laptop',
   'Science: Mathematics': 'calculator',
-  'Mythology': 'ankh',
-  'Sports': 'basket-ball',
-  'Geography': 'globe-americas',
-  'History': 'scroll',
-  'Politics': 'landmark',
-  'Celebrities': 'users',
-  'Animals': 'paw',
-  'Vehicles': 'car',
+  Mythology: 'ankh',
+  Sports: 'basket-ball',
+  Geography: 'globe-americas',
+  History: 'scroll',
+  Politics: 'landmark',
+  Celebrities: 'users',
+  Animals: 'paw',
+  Vehicles: 'car',
   'Entertainment: Comics': 'book-open',
   'Science: Gadgets': 'cogs',
   'Entertainment: Japanese Anime & Manga': 'user-ninja',
   'Entertainment: Cartoon & Animations': 'grin-tongue-squint'
-}
+};
 
 // init to run app when document loaded and ready
 app.init = () => {
@@ -42,57 +42,74 @@ app.init = () => {
 
 // Introduction screen form submission and proceeding to the game
 app.introScreen = function() {
-  $('.intro-form-submit').on('click', (e) => {
-
+  $('.intro-form-submit').on('click', e => {
     // Get the information for the api call from the user for question category, question difficulty, and number of players
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();
     app.playerCount = $('#trivia-players').val();
 
+    //create score boxes
+    app.createPlayers();
+
     // add additional questions based on number of players (5 extra per player)
-    app.apiNumQuestions += app.playerCount*5;
-    
-    if(app.category === null || app.apiDifficulty === null) {
-      app.error('Please select a category and difficulty!')
+    app.apiNumQuestions += app.playerCount * 5;
+
+    if (app.category === null || app.apiDifficulty === null) {
+      app.error('Please select a category and difficulty!');
     } else {
       app.apiCall();
       // fade out the intro screen and fades in the main game screen
       $('.intro-container').fadeOut();
-      $('.quiz-container').delay(800).fadeIn();
-      
+      $('.quiz-container')
+        .delay(800)
+        .fadeIn();
+
       // resets the div container holding the game back to flexbox from display: none to be properly centered
       $('.quiz-container').css('display', 'flex');
     }
     // stop the submit button from refreshing the page when clicked
     e.preventDefault();
   });
-}
+};
+
+app.createPlayers = function() {
+
+  for (let i = 1; i <= app.playerCount; i++) {
+    const playerScoreOutput = $('<p>').html(
+      `Player ${i} Score: <br><span class="player${i}-score-output">0</span>/10`);
+
+    const playerScoreBox = $('<div>')
+      .addClass(`player${i}-score-box score-box`)
+      .html(playerScoreOutput);
+    $('.player-scores-container').append(playerScoreBox);
+  }
+};
 
 // Use the app.fontAwesome object to find the appriate font awesome icon class name from the selected category and return it
-app.iconCategory = function (category) {
+app.iconCategory = function(category) {
   return app.fontAwesome[category];
-}
+};
 
 app.instructions = function() {
-  $('.intro-show-instructions').on('click', (e) => {
+  $('.intro-show-instructions').on('click', e => {
     $('.instructions-modal').fadeIn();
 
     $('.instructions-close-button').on('click', () => {
       $('.instructions-modal').fadeOut();
-    })
+    });
 
     e.preventDefault();
-  })
-}
+  });
+};
 
 app.error = function(message) {
-    $('.error-modal').fadeIn();
-    $('.error-modal-message').html(message)
+  $('.error-modal').fadeIn();
+  $('.error-modal-message').html(message);
 
-    $('.error-close-button').on('click', () => {
-      $('.error-modal').fadeOut();
-    })
-}
+  $('.error-close-button').on('click', () => {
+    $('.error-modal').fadeOut();
+  });
+};
 
 // function that calls API
 app.apiCall = function() {
@@ -104,28 +121,29 @@ app.apiCall = function() {
       amount: app.apiNumQuestions,
       category: app.apiCategory,
       difficulty: app.apiDifficulty,
-      type: "multiple"
+      type: 'multiple'
     }
-  }).then(
-    data => {
-      // if the response code is 0 then begins to parse the data, otherwise alerts that something went wrong
-      if (data.response_code === 0) {
-        // retrieves the trivia questions from the api
-        app.triviaQuestionsArray = data.results;
+  }).then(data => {
+    // if the response code is 0 then begins to parse the data, otherwise alerts that something went wrong
+    if (data.response_code === 0) {
+      // retrieves the trivia questions from the api
+      app.triviaQuestionsArray = data.results;
 
-        app.askQuestions();
+      app.askQuestions();
 
       // alert that something went wrong with the api
-      } else if (data.response_code === 1) {
-        app.error(`Sorry, Open Trivia DB doesn't have any results for your query.  Please try another selection.`)
-      }
-    })
+    } else if (data.response_code === 1) {
+      app.error(
+        `Sorry, Open Trivia DB doesn't have any results for your query.  Please try another selection.`
+      );
+    }
+  });
 };
 
 // populate questions into the DOM from the array
 app.askQuestions = function() {
   const questionObject = app.triviaQuestionsArray[app.questionCounter];
-  
+
   app.answer = questionObject.correct_answer;
   console.log(app.answer);
 
@@ -144,17 +162,17 @@ app.askQuestions = function() {
   $('.trivia-difficulty').html(`Difficulty: (${difficulty})`);
 
   // create new array with both incorrect and correct answer
-  possibleAnswersArray = incorrectAnswersArray.concat([app.answer])
-  possibleAnswersArray.sort()
+  possibleAnswersArray = incorrectAnswersArray.concat([app.answer]);
+  possibleAnswersArray.sort();
 
   // loop through possible answers and output into input radio fields
-  for(let i = 1; i <= possibleAnswersArray.length; i++) {
+  for (let i = 1; i <= possibleAnswersArray.length; i++) {
     $(`input#answer${i}`).attr('value', possibleAnswersArray[i - 1]);
     $(`label[for=answer${i}]`).html(possibleAnswersArray[i - 1]);
   }
 
   // listen for click on user submit
-  $('#submit-answer-button').on('click', (e) => {
+  $('#submit-answer-button').on('click', e => {
     // get the value of the player's answer
     playerAnswer = $('input[name=testRadio]:checked').val();
 
@@ -169,9 +187,8 @@ app.askQuestions = function() {
 app.checkAnswer = function(playerAnswer) {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
-
     // adds to playerscore
-    app.playerScore++
+    app.playerScore++;
     app.updateScore(app.playerScore);
 
     $('.answer-result-title').html('CORRECT');
@@ -181,35 +198,38 @@ app.checkAnswer = function(playerAnswer) {
     $('.answer-result-correct-answer').html(`Correct Answer: ${app.answer}`);
   }
 
-  $('.answer-form').fadeOut()
-  $('.answer-result').delay(400).fadeIn()
-}
+  $('.answer-form').fadeOut();
+  $('.answer-result')
+    .delay(400)
+    .fadeIn();
+};
 
-app.updateScore = function () {
+app.updateScore = function() {
   $('.player-score-output').html(app.playerScore);
-}
+};
 
 // next question button
 app.nextQuestion = function() {
-  $('.answer-result-next-question').on('click', (e) => {
+  $('.answer-result-next-question').on('click', e => {
     // removed the checked property on the inputs
     $('.testRadio').prop('checked', false);
 
     // if there are unanswered questions in the array iterates the question counter and asks next question
-    if ((app.questionCounter + 1) < app.triviaQuestionsArray.length){
+    if (app.questionCounter + 1 < app.triviaQuestionsArray.length) {
       app.questionCounter++;
       $('.answer-result').fadeOut();
-      $('.answer-form').delay(400).fadeIn();
+      $('.answer-form')
+        .delay(400)
+        .fadeIn();
       app.askQuestions();
 
-    // if there are no more questions stops the game
-    } else if ((app.questionCounter + 1) === app.triviaQuestionsArray.length) {
+      // if there are no more questions stops the game
+    } else if (app.questionCounter + 1 === app.triviaQuestionsArray.length) {
       $('.gameover-modal').fadeIn();
-    };
+    }
+  });
+};
 
-  })
-}
-
-$(function(){
+$(function() {
   app.init();
 });

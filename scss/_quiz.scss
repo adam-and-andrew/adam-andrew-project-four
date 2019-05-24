@@ -24,6 +24,10 @@
   text-align: center;
 }
 
+.trivia-question-container {
+  margin-top: 100px;
+}
+
 .trivia-question {
   text-transform: uppercase;
   line-height: 1.6;
@@ -87,6 +91,19 @@ input:focus ~ label {
 .answer-result {
   width: 100%;
   display: none;
+}
+
+.player-scores-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.score-box {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid orange;
+  border-radius: 15px;
 }
 
 // gameover modal pop up for game ending
