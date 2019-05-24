@@ -7,11 +7,58 @@ app.questionCounter = 0;
 // init to run app when document loaded and ready
 app.init = () => {
   app.introScreen();
+  app.instructions();
   app.nextQuestion();
 };
 
+// Introduction screen form submission and proceeding to the game
+app.introScreen = function() {
+  $('.intro-form-submit').on('click', (e) => {
+
+    
+    // Get the information for the api call from the user for question category and question difficulty
+    app.apiCategory = $('#trivia-category').val();
+    app.apiDifficulty = $('#trivia-difficulty').val();
+    
+    if(app.category === null || app.apiDifficulty === null) {
+      app.error('Please select a category and difficulty!')
+    } else {
+      app.apiCall();
+      // fade out the intro screen and fades in the main game screen
+      $('.intro-container').fadeOut();
+      $('.quiz-container').delay(800).fadeIn();
+      
+      // resets the div container holding the game back to flexbox from display: none to be properly centered
+      $('.quiz-container').css('display', 'flex');
+    }
+    // stop the submit button from refreshing the page when clicked
+    e.preventDefault();
+  });
+}
+
+app.instructions = function() {
+  $('.intro-show-instructions').on('click', (e) => {
+    $('.instructions-modal').fadeIn();
+
+    $('.instructions-close-button').on('click', () => {
+      $('.instructions-modal').fadeOut();
+    })
+
+    e.preventDefault();
+  })
+}
+
+app.error = function(message) {
+    $('.error-modal').fadeIn();
+    $('.error-modal-message').html(message)
+
+    $('.error-close-button').on('click', () => {
+      $('.error-modal').fadeOut();
+    })
+}
+
 // function that calls API
-app.apiCall = () => {
+app.apiCall = function() {
   $.ajax({
     url: 'https://opentdb.com/api.php',
     method: 'GET',
@@ -31,15 +78,15 @@ app.apiCall = () => {
 
         app.askQuestions();
 
-      } else {
-        // alert that something went wrong with the api
-        alert('something went wrong');
+      // alert that something went wrong with the api
+      } else if (data.response_code === 1) {
+        app.error(`Sorry, Open Trivia DB doesn't have any results for your query.  Please try another selection.`)
       }
     })
 };
 
 // populate questions into the DOM from the array
-app.askQuestions = () => {
+app.askQuestions = function() {
   const questionObject = app.triviaQuestionsArray[app.questionCounter];
   
   app.answer = questionObject.correct_answer;
@@ -76,7 +123,7 @@ app.askQuestions = () => {
 };
 
 // function that checks player answer
-app.checkAnswer = (playerAnswer) => {
+app.checkAnswer = function(playerAnswer) {
   // check if user's answer is correct
   if (playerAnswer === app.answer) {
     console.log(`YOU'RE RIGHT`)
@@ -92,7 +139,7 @@ app.checkAnswer = (playerAnswer) => {
 }
 
 // next question button
-app.nextQuestion = () => {
+app.nextQuestion = function() {
   $('.answer-result-next-question').on('click', (e) => {
     // removed the checked property on the inputs
     $('.testRadio').prop('checked', false);
@@ -111,31 +158,6 @@ app.nextQuestion = () => {
     };
 
   })
-}
-
-// Introduction screen form submission and proceeding to the game
-app.introScreen = () => {
-  $('.intro-form-submit').on('click', (e) => {
-
-    
-    // Get the information for the api call from the user for question category and question difficulty
-    app.apiCategory = $('#trivia-category').val();
-    app.apiDifficulty = $('#trivia-difficulty').val();
-    
-    if(app.category === null || app.apiDifficulty === null) {
-      alert("Invalid Selection");
-    } else {
-      app.apiCall();
-      // fade out the intro screen and fades in the main game screen
-      $('.intro-container').fadeOut();
-      $('.quiz-container').delay(800).fadeIn();
-      
-      // resets the div container holding the game back to flexbox from display: none to be properly centered
-      $('.quiz-container').css('display', 'flex');
-    }
-    // stop the submit button from refreshing the page when clicked
-    e.preventDefault();
-  });
 }
 
 $(function(){

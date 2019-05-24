@@ -185,11 +185,12 @@ html {
 
 body {
   background-color: #323232;
-  color: #FAFAFA;
-  font-family: "Roboto", sans-serif;
+  color: #fafafa;
+  font-family: 'Roboto', sans-serif;
 }
 
-h1, p {
+h1,
+p {
   margin: 0;
   padding: 0;
 }
@@ -221,10 +222,55 @@ h1, p {
 }
 
 .trivia-heading {
-  text-transform: uppercase;
   font-family: 'Righteous', sans-serif;
+  text-transform: uppercase;
   text-shadow: 5px 5px #C4A36E;
   font-size: 6rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.modal-text-container {
+  border-radius: 2rem;
+  border: 2px solid orange;
+  background-color: #484646;
+  width: 70%;
+  margin: 2% auto;
+  padding: 1rem 0;
+}
+
+.modal-title {
+  font-family: 'Righteous', sans-serif;
+  text-transform: uppercase;
+  font-size: 4rem;
+  text-shadow: 3px 3px #C4A36E;
+  letter-spacing: 0.1rem;
+}
+
+.modal-message {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  text-align: center;
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.modal-credits {
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  letter-spacing: 0.1rem;
+  font-weight: 800;
+  margin-top: 50px;
 }
 
 .intro-container {
@@ -247,7 +293,7 @@ h1, p {
 .intro-heading {
   text-shadow: 5px 5px #C4A36E;
   font-size: 6rem;
-  margin: 50px 0 20px 0;
+  margin: 50px 0;
   text-align: left;
 }
 
@@ -262,7 +308,7 @@ h1, p {
   appearance: none;
   margin: 20px 15px;
   padding: 5px 15px;
-  width: 300px;
+  width: 400px;
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid orange;
   border-radius: 20px;
@@ -278,8 +324,20 @@ h1, p {
 
 .intro-buttons input,
 .intro-buttons button {
-  width: 300px;
+  width: 400px;
   margin: 20px 15px;
+}
+
+.instructions-modal-message {
+  text-align: left;
+}
+
+.instructions-modal-credits {
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  letter-spacing: 0.1rem;
+  font-weight: 800;
+  margin-top: 50px;
 }
 
 .quiz-heading {
@@ -390,43 +448,8 @@ input:focus ~ label {
   display: none;
 }
 
-.gameover-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-}
-
-.gameover-modal-text-container {
-  border-radius: 2rem;
-  background-color: #484646;
-  width: 70%;
-  margin: 2% auto;
-  padding: 1rem 0;
-}
-
-.gameover-modal-title {
-  text-transform: uppercase;
-  font-size: 5rem;
-  letter-spacing: 0.2rem;
-}
-
-.gameover-modal-message {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  text-align: center;
-  width: 80%;
-  margin: 1rem auto;
-}
-
 .gameover-modal-score {
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
   margin: 1rem 0;
 }
 

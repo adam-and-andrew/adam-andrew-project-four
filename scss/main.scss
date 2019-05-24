@@ -3,9 +3,8 @@
 @import './config';
 @import './intro';
 @import './quiz';
-@import './gameover';
 
-//INTRO SCREEN
+// background art
 main {
   background-image: url('../assets/black-light-bulbs.jpg');
   background-size: cover;

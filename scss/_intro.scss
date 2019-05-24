@@ -15,7 +15,7 @@
 .intro-heading {
   text-shadow: 5px 5px $highlight-colour;
   font-size: 6rem;
-  margin: 50px 0 20px 0;
+  margin: 50px 0;
   text-align: left;
 
   &-sub {
@@ -32,8 +32,8 @@
   margin: 20px 15px;
   padding: 5px 15px;
 
-  width: 300px;
-	background-color: rgba( 0, 0, 0, 0.9);
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid orange;
   border-radius: 20px;
   padding: 5px;
@@ -41,14 +41,30 @@
   text-align: center;
   color: orange;
 
-	background-image: url(../assets/caret-down.svg);
-	background-size: 4%;
-	background-repeat: no-repeat;
-	background-position: 95% center;
+  // carat for select inputs
+  background-image: url(../assets/caret-down.svg);
+  background-size: 4%;
+  background-repeat: no-repeat;
+  background-position: 95% center;
 }
 
 .intro-buttons input,
 .intro-buttons button {
-  width: 300px;
+  width: 400px;
   margin: 20px 15px;
+}
+
+// instructions modal pop up
+.instructions-modal {
+  &-message {
+    text-align: left;
+  }
+
+  &-credits {
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    letter-spacing: 0.1rem;
+    font-weight: 800;
+    margin-top: 50px;
+  }
 }
