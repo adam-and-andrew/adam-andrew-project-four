@@ -1,12 +1,9 @@
 REMEMBER TO DELETE THIS FILE!
 
 General:
-- add a wrapper class
 
 Gameplay:
-- player Score
 - functional game over modal
-- hints!
 - multiple players
 
 Styling:

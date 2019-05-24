@@ -65,6 +65,14 @@
               <option value="hard">Hard</option>
             </select>
 
+            <label for="trivia-players" class="visuallyHidden">Select Trivia Difficulty</label>
+            <select id="trivia-players" class="intro-select">
+              <option selected value="1">One Player</option>
+              <option value="2">Two Players</option>
+              <option value="3">Three Players</option>
+              <option value="4">Four Players</option>
+            </select>
+
             <div class="intro-buttons">
               <button class="intro-show-instructions button">Instructions</button>
               <input type="submit" value="play" id="intro-form-submit" class="intro-form-submit button" />
@@ -103,9 +111,9 @@
       <h2 class="quiz-heading trivia-heading"><i class="far fa-lightbulb"></i> Trivia</h2>
 
       <div class="trivia-question-container">
+        <h3 class="trivia-category"></h3>
+        <p class="trivia-difficulty"></p>
         <p class="trivia-question"></p>
-        <p class="trivia-category-heading">Category:</p>
-        <p class="trivia-category"></p>
       </div>
 
       <div class="answer-container">

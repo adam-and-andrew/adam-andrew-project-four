@@ -1,8 +1,9 @@
 app = {};
-app.apiNumQuestions = 1;
+app.apiNumQuestions = 5;
 app.apiCategory = undefined;
 app.apiDifficulty = undefined;
 app.questionCounter = 0;
+app.playerCount = 1;
 app.playerScore = 0;
 
 app.fontAwesome = {
@@ -43,9 +44,13 @@ app.init = () => {
 app.introScreen = function() {
   $('.intro-form-submit').on('click', (e) => {
 
-    // Get the information for the api call from the user for question category and question difficulty
+    // Get the information for the api call from the user for question category, question difficulty, and number of players
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();
+    app.playerCount = $('#trivia-players').val();
+
+    // add additional questions based on number of players (5 extra per player)
+    app.apiNumQuestions += app.playerCount*5;
     
     if(app.category === null || app.apiDifficulty === null) {
       app.error('Please select a category and difficulty!')
@@ -63,11 +68,9 @@ app.introScreen = function() {
   });
 }
 
-
+// Use the app.fontAwesome object to find the appriate font awesome icon class name from the selected category and return it
 app.iconCategory = function (category) {
-
   return app.fontAwesome[category];
-  
 }
 
 app.instructions = function() {
@@ -129,10 +132,16 @@ app.askQuestions = function() {
   const question = questionObject.question;
   const category = questionObject.category;
   const incorrectAnswersArray = questionObject.incorrect_answers;
+  const difficulty = questionObject.difficulty;
 
   // output question and category
   $('.trivia-question').html(question);
-  $('.trivia-category').html(`<span><i class="fas fa-${app.iconCategory(category)}"></i></span> ${category}`);
+
+  // use the iconCategory function to place the appropriate icon for the displayed category
+  $('.trivia-category').html(`<i class="fas fa-${app.iconCategory(category)}"></i> ${category}`);
+
+  // print out question difficulty
+  $('.trivia-difficulty').html(`Difficulty: (${difficulty})`);
 
   // create new array with both incorrect and correct answer
   possibleAnswersArray = incorrectAnswersArray.concat([app.answer])
