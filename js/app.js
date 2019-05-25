@@ -41,7 +41,8 @@ app.fontAwesome = {
 app.init = () => {
   app.introScreen();
   app.instructions();
-  app.playerTurn();
+  app.playerTurnOutput();
+  app.answerQuestion();
   app.nextQuestion();
   app.updateScore();
 };
@@ -56,7 +57,7 @@ app.introScreen = function() {
     app.playerCount = parseInt($('#trivia-players').val());
 
     //updates the turn counter
-    app.playerTurn();
+    app.playerTurnOutput();
 
     //create score boxes
     app.createPlayers();
@@ -186,27 +187,28 @@ app.askQuestions = function() {
     $(`input#answer${i}`).attr('value', possibleAnswersArray[i - 1]);
     $(`label[for=answer${i}]`).html(possibleAnswersArray[i - 1]);
   }
-
-  // listen for click on user submit
-  $('#submit-answer-button').on('click', e => {
-    // get the value of the player's answer
-    playerAnswer = $('input[name=testRadio]:checked').val();
-
-    // call function to check users answer
-    app.checkAnswer(playerAnswer);
-
-    e.preventDefault();
-  });
 };
 
-// function that checks player answer
-app.checkAnswer = function(playerAnswer) {
-  // check if user's answer is correct
-  if (playerAnswer === app.answer) {
-    // adds to playerscore
-    app.playerScore[`player${app.turnCount}`]++;
-    console.log(app.playerScore);
+// form submit when user answers a question
+app.answerQuestion = function() {
+  // listen for click on user submit
+  $('#submit-answer-button').on('click', function(e) {
+    // get the value of the player's answer
+    playerAnswer = $('input[name=testRadio]:checked').val();
+  
+    // call function to check users answer
+    app.checkAnswer(playerAnswer);
+  
+    e.preventDefault();
+  });
+}
 
+// function that checks player answer
+app.checkAnswer = function(answer) {
+  // check if user's answer is correct
+  if (answer === app.answer) {
+    // adds to playerscore
+    app.playerScore[`player${app.turnCount}`] += 1;
     app.updateScore();
 
     $('.answer-result-title').html('CORRECT');
