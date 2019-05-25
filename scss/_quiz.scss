@@ -87,7 +87,7 @@
     overflow: hidden;
     position: relative;
     border-radius: 15px;
-    
+
     &:hover {
       border: 2px dashed $primary-colour;
     }
@@ -155,7 +155,7 @@
 }
 
 //Media queries and responsiveness
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .trivia-question-container {
     margin-top: 20px;
     padding: 15px;
@@ -167,7 +167,7 @@
 
   .trivia-question {
     line-height: 1.3;
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 
   .trivia-question-counter {
@@ -176,7 +176,7 @@
       font-size: 0.8rem;
     }
   }
-  .trivia-question-total-output{
+  .trivia-question-total-output {
     font-size: 0.8rem;
   }
 
@@ -187,13 +187,19 @@
   .radio-button-container {
     width: 95%;
   }
-
 }
 
-@media(max-width: 380px) {
+@media (max-width: 560px) {
+  .gameover-modal-score {
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+  }
+}
 
+@media (max-width: 380px) {
   .trivia {
-
     &-category {
       font-size: 1.2rem;
     }
@@ -201,7 +207,6 @@
     &-difficulty {
       font-size: 0.8rem;
     }
-
   }
 
   .score-box {
@@ -212,5 +217,4 @@
   .score-box p {
     font-size: 0.8rem;
   }
-
 }

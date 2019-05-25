@@ -12,14 +12,14 @@
     width: 80%;
     border-radius: 25px;
   }
-  
+
   // main heading
   &-heading {
     text-shadow: 5px 5px $highlight-colour;
     font-size: 6rem;
     margin: 50px 0;
     text-align: left;
-  
+
     &-sub {
       font-size: 1.2rem;
       text-shadow: 2px 2px $highlight-colour;
@@ -31,25 +31,25 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-  
+
     width: 400px;
     margin: 20px 15px;
     padding: 5px 15px;
-  
+
     background-color: rgba(0, 0, 0, 0.9);
     border: 2px solid $primary-colour;
     border-radius: 20px;
     font-size: 1.5rem;
     text-align: center;
     color: $primary-colour;
-  
+
     // carat for select inputs
     background-image: url(../assets/caret-down.svg);
     background-size: 4%;
     background-repeat: no-repeat;
     background-position: 95% center;
   }
-  
+
   &-buttons {
     input,
     button {
@@ -86,6 +86,7 @@
 @media (max-width: 920px) {
   .modal-title {
     font-size: 1.5rem;
+    padding-left:8px;
   }
 }
 
@@ -106,12 +107,12 @@
   .instructions-modal {
     &-credits {
       margin-top: 20px;
+      padding: 0 8px;
     }
   }
 }
 
 @media (max-width: 380px) {
-
   .intro-textbox {
     width: 90%;
   }
