@@ -4,11 +4,8 @@ General:
 - RESPONSIVENESS!
 
 Gameplay:
-- Add number of questions counter
-- functional game over modal (need to deal with multiple players)
 
 Styling:
-- Correct/Incorrect Answer styling
 
 Error Handling:
 - Fade In/Out issue when Next is clicked after question

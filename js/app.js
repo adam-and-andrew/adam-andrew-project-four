@@ -1,9 +1,16 @@
+// name space object
 app = {};
+
+// default number of questions starts at 5
 app.apiNumQuestions = 5;
-app.apiCategory = undefined;
-app.apiDifficulty = undefined;
+
+// question counter to iterate over the array of questions
 app.questionCounter = 0;
+
+// turn counter
 app.turnCount = 1;
+
+// object of all possible player scores
 app.playerScore = {
   player1: 0,
   player2: 0,
@@ -11,6 +18,7 @@ app.playerScore = {
   player4: 0
 };
 
+// object for font awesome icons for each trivia category
 app.fontAwesome = {
   'General Knowledge': 'graduation-cap',
   'Entertainment: Books': 'book',
@@ -38,7 +46,7 @@ app.fontAwesome = {
 };
 
 // init to run app when document loaded and ready
-app.init = () => {
+app.init = function() {
   app.introScreen();
   app.instructions();
   app.playerTurnOutput();
@@ -49,11 +57,12 @@ app.init = () => {
 
 // Introduction screen form submission and proceeding to the game
 app.introScreen = function() {
-  $('.intro-form-submit').on('click', e => {
+  $('.intro-form-submit').on('click', function(e) {
     // Get the information for the api call from the user for question category, question difficulty, and number of players
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();
-    // get the number of players and convert string to number
+    
+    // get the number of players and convert string to integer number
     app.playerCount = parseInt($('#trivia-players').val());
 
     //updates the turn counter
@@ -69,7 +78,9 @@ app.introScreen = function() {
     if (app.category === null || app.apiDifficulty === null) {
       app.error('Please select a category and difficulty!');
     } else {
+      // make api call with user selections
       app.apiCall();
+
       // fade out the intro screen and fades in the main game screen
       $('.intro-container').fadeOut();
       $('.quiz-container')
@@ -78,13 +89,18 @@ app.introScreen = function() {
 
       // resets the div container holding the game back to flexbox from display: none to be properly centered
       $('.quiz-container').css('display', 'flex');
+
+      // outputs the number of questions into the questions counter
+      $('.trivia-question-total-output').html(app.apiNumQuestions);
     }
-    // stop the submit button from refreshing the page when clicked
+
     e.preventDefault();
   });
 };
 
+// create the player scores at the bottom of the game page
 app.createPlayers = function() {
+  // loop over the total number of players and create divs
   for (let i = 1; i <= app.playerCount; i++) {
     const playerScoreOutput = $('<p>').html(
       `Player ${i} Score: <br><span class="player${i}-score-output">0</span>`
@@ -97,7 +113,9 @@ app.createPlayers = function() {
   }
 };
 
+// output the turn counter at the bottom of the page
 app.playerTurnOutput = function() {
+  // if there is only one player the turn counter is hidden
   if (app.playerCount === 1) {
     $('.player-turn').css('display', 'none');
   } else {
@@ -110,11 +128,12 @@ app.iconCategory = function(category) {
   return app.fontAwesome[category];
 };
 
+// toggle the instructions modal on click
 app.instructions = function() {
-  $('.intro-show-instructions').on('click', e => {
+  $('.intro-show-instructions').on('click', function(e) {
     $('.instructions-modal').fadeIn();
 
-    $('.instructions-close-button').on('click', () => {
+    $('.instructions-close-button').on('click', function() {
       $('.instructions-modal').fadeOut();
     });
 
@@ -122,7 +141,7 @@ app.instructions = function() {
   });
 };
 
-// error modal
+// error modal that takes a message when called and displays that message
 app.error = function(message) {
   $('.error-modal').fadeIn();
   $('.error-modal-message').html(message);
@@ -139,34 +158,37 @@ app.apiCall = function() {
     method: 'GET',
     dataType: 'json',
     data: {
+      // query parameters from user input
       amount: app.apiNumQuestions,
       category: app.apiCategory,
       difficulty: app.apiDifficulty,
+      // only calls mutliple choice questions
       type: 'multiple'
     }
   }).then(data => {
     // if the response code is 0 then begins to parse the data, otherwise alerts that something went wrong
     if (data.response_code === 0) {
-      // retrieves the trivia questions from the api
       app.triviaQuestionsArray = data.results;
 
       app.askQuestions();
 
-      // alert that something went wrong with the api
     } else if (data.response_code === 1) {
       app.error(
-        `Sorry, Open Trivia DB doesn't have any results for your query.  Please try another selection.`
+        `Sorry, Open Trivia DB doesn't have any results for your query. Please try another selection.`
       );
     }
   });
 };
 
-// populate questions into the DOM from the array
+// populate questions into the DOM from the array of questions returned
 app.askQuestions = function() {
+  // iterates through the array using the question counter to count index values
   const questionObject = app.triviaQuestionsArray[app.questionCounter];
 
+  // saves the anwer to the question into the name space
   app.answer = questionObject.correct_answer;
 
+  // grabs question data from question object
   const question = questionObject.question;
   const category = questionObject.category;
   const incorrectAnswersArray = questionObject.incorrect_answers;
@@ -180,26 +202,28 @@ app.askQuestions = function() {
     `<i class="fas fa-${app.iconCategory(category)}" aria-hidden="true"></i> ${category}`
   );
 
-  // print out question difficulty
+  // output question difficulty
   $('.trivia-difficulty').html(`Difficulty: (${difficulty})`);
 
-  // create new array with both incorrect and correct answer
+  // creates a new array with both incorrect and correct answer and sorts the array
   possibleAnswersArray = incorrectAnswersArray.concat([app.answer]);
   possibleAnswersArray.sort();
 
-  // loop through possible answers and output into input radio fields
+  // loops through possible answers and output them into input radio fields and their labels
   for (let i = 1; i <= possibleAnswersArray.length; i++) {
     $(`input#answer${i}`).attr('value', possibleAnswersArray[i - 1]);
     $(`label[for=answer${i}]`).html(possibleAnswersArray[i - 1]);
   }
+
+  // print out the current question counter
+  $('.trivia-question-counter-output').html(app.questionCounter + 1);
 };
 
 // submit when user answers a question
 app.answerQuestion = function() {
-  // listen for click on user submit
   $('#submit-answer-button').on('click', function(e) {
     // get the value of the player's answer
-    playerAnswer = $('input[name=testRadio]:checked').val();
+    playerAnswer = $('input[name=answer-input-radio]:checked').val();
 
     // validates that the user has made a selection
     if (playerAnswer === undefined) {
@@ -217,40 +241,45 @@ app.answerQuestion = function() {
 app.checkAnswer = function(answer) {
   // check if user's answer is correct
   if (answer === app.answer) {
-    // adds to playerscore
+    // adds to player's score
     app.playerScore[`player${app.turnCount}`] += 1;
     app.updateScore();
 
+    // ouputs if they are correct
     $('.answer-result-title').html('CORRECT');
     $('.answer-result-correct-answer').html('');
   } else {
+    // outputs if they're incorrect and the correct answer
     $('.answer-result-title').html('INCORRECT');
     $('.answer-result-correct-answer').html(`Correct Answer: ${app.answer}`);
   }
 
+  // hides answer form and displays answer results
   $('.answer-form').fadeOut();
   $('.answer-result')
     .delay(400)
     .fadeIn();
 };
 
+// outputs updated player score to DOM
 app.updateScore = function() {
   $(`.player${app.turnCount}-score-output`).html(app.playerScore[`player${app.turnCount}`]);
 };
 
 // next question button
 app.nextQuestion = function() {
-  $('.answer-result-next-question').on('click', e => {
+  $('.answer-result-next-question').on('click', function(e) {
     // removed the checked property on the inputs
-    $('.testRadio').prop('checked', false);
+    $('.answer-input-radio').prop('checked', false);
 
-    // if there are unanswered questions in the array iterates the question counter and asks next question
+    // if there are unanswered questions in the array iterates the question counter and asks next question in array
     if (app.questionCounter + 1 < app.triviaQuestionsArray.length) {
       app.questionCounter++;
       $('.answer-result').fadeOut();
       $('.answer-form')
         .delay(400)
         .fadeIn();
+
       app.askQuestions();
 
       // if there are no more questions stops the game
@@ -277,8 +306,25 @@ app.gameOver = function() {
     $('.gameover-modal-score').html(
       `You got ${app.playerScore.player1} out of ${app.apiNumQuestions} questions.`
     );
+    // output all players score if there is more than one player
   } else {
-    // output each players score
+    // convert score object to array of scores
+    const scores = Object.values(app.playerScore);
+
+    // loop over array and output only the number of players in the game
+    for (let i = 0; i < app.playerCount; i++) {
+      // uses the same classes from when the player scores are created in the DOM
+      const playerScoreOutput = $('<p>').html(
+        `Player ${i + 1} Score: <br><span class="player${i + 1}-score-output">${scores[i]}</span>`
+      );
+        
+      const playerScoreBox = $('<div>')
+        .addClass(`player${i}-score-box score-box`)
+        .html(playerScoreOutput);
+
+      // output scores to the game modal
+      $('.gameover-modal-score').append(playerScoreBox);
+    }
   }
 
   // show the gameover modal
@@ -294,3 +340,8 @@ app.gameOver = function() {
 $(function() {
   app.init();
 });
+
+
+
+
+

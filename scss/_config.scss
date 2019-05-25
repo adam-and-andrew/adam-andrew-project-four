@@ -4,38 +4,40 @@ html {
 
 body {
   background-color: $bg-color;
-  color: #fafafa;
+  color: #E5E5E5;
 
   font-family: 'Roboto', sans-serif;
 }
 
 h1,
 h2,
-h3, 
+h3,
 p {
   margin: 0;
   padding: 0;
 }
 
+// wrapper class to contain elements
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;
 }
 
+// all button styles
 .button {
   margin: 20px auto 0 auto;
   padding: 5px 15px;
   border-radius: 10px;
   background: $bg-color;
-  color: white;
+  color: #E5E5E5;
   font-size: 1.5rem;
   font-weight: 800;
-  border: 2px solid orange;
+  border: 2px solid $primary-colour;
   transition: all 0.2s;
   text-transform: uppercase;
 
   &:focus {
-    border: 5px dashed orange;
+    border: 5px dashed $primary-colour;
     background-color: rgba(255, 165, 0, 0.2);
   }
 
@@ -46,6 +48,7 @@ p {
   }
 }
 
+// main heading
 .trivia-heading {
   font-family: 'Righteous', sans-serif;
   text-transform: uppercase;
@@ -68,7 +71,7 @@ p {
 
   &-text-container {
     border-radius: 2rem;
-    border: 2px solid orange;
+    border: 2px solid $primary-colour;
     background-color: rgb(72, 70, 70);
     width: 70%;
     margin: 5% auto;
@@ -97,5 +100,39 @@ p {
     letter-spacing: 0.1rem;
     font-weight: 800;
     margin-top: 50px;
+  }
+}
+
+// Media queries and responsiveness
+
+@media (max-width: 920px) {
+  .modal {
+    padding: 0.8rem;
+    &-text-container {
+      width: 90%;
+    }
+    &-title {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .modal {
+    &-message {
+      font-size: 1rem;
+      line-height: 1.4;
+      width: 85%;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .modal {
+    &-title {
+      font-size: 1rem;
+      line-height: 1.4;
+      width: 85%;
+    }
   }
 }

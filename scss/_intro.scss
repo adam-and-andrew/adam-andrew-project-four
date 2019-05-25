@@ -1,56 +1,62 @@
-.intro-container {
-  height: 100vh;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-}
-
-// centered on screen via parent container
-.intro-textbox {
-  text-align: center;
-  width: 80%;
-  border-radius: 25px;
-}
-
-.intro-heading {
-  text-shadow: 5px 5px $highlight-colour;
-  font-size: 6rem;
-  margin: 50px 0;
-  text-align: left;
-
-  &-sub {
-    font-size: 1.2rem;
-    text-shadow: 2px 2px $highlight-colour;
+.intro {
+  &-container {
+    height: 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
   }
-}
 
-.intro-select {
-  -moz-appearance: none;
-  -webKit-appearance: none;
-  appearance: none;
+  // centered on screen via parent container
+  &-textbox {
+    text-align: center;
+    width: 80%;
+    border-radius: 25px;
+  }
+  
+  // main heading
+  &-heading {
+    text-shadow: 5px 5px $highlight-colour;
+    font-size: 6rem;
+    margin: 50px 0;
+    text-align: left;
+  
+    &-sub {
+      font-size: 1.2rem;
+      text-shadow: 2px 2px $highlight-colour;
+    }
+  }
 
-  margin: 20px 15px;
-  padding: 5px 15px;
-
-  width: 400px;
-  background-color: rgba(0, 0, 0, 0.9);
-  border: 2px solid orange;
-  border-radius: 20px;
-  font-size: 1.5rem;
-  text-align: center;
-  color: orange;
-
-  // carat for select inputs
-  background-image: url(../assets/caret-down.svg);
-  background-size: 4%;
-  background-repeat: no-repeat;
-  background-position: 95% center;
-}
-
-.intro-buttons input,
-.intro-buttons button {
-  width: 400px;
-  margin: 20px 15px;
+  // select drop downs
+  &-select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+  
+    width: 400px;
+    margin: 20px 15px;
+    padding: 5px 15px;
+  
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid $primary-colour;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: $primary-colour;
+  
+    // carat for select inputs
+    background-image: url(../assets/caret-down.svg);
+    background-size: 4%;
+    background-repeat: no-repeat;
+    background-position: 95% center;
+  }
+  
+  &-buttons {
+    input,
+    button {
+      width: 400px;
+      margin: 20px 15px;
+    }
+  }
 }
 
 // instructions modal pop up
@@ -65,5 +71,69 @@
     letter-spacing: 0.1rem;
     font-weight: 800;
     margin-top: 50px;
+  }
+}
+
+// Media queries and responsiveness
+
+@media (max-width: 1150px) {
+  .intro-heading {
+    font-size: 3rem;
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: 920px) {
+  .modal-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .intro-select {
+    width: 300px;
+    margin: 10px;
+    font-size: 1.2rem;
+  }
+
+  .intro-buttons input,
+  .intro-buttons button {
+    width: 300px;
+    margin: 10px;
+    font-size: 1.2rem;
+  }
+
+  .instructions-modal {
+    &-credits {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+
+  .intro-textbox {
+    width: 90%;
+  }
+
+  .intro-heading {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .intro-select {
+    width: 270px;
+    margin: 8px;
+    font-size: 1rem;
+  }
+
+  .intro-buttons input,
+  .intro-buttons button {
+    width: 270px;
+    margin: 8px;
+  }
+
+  .instructions-close-button {
+    margin: 0 auto;
   }
 }

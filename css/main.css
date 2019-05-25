@@ -185,7 +185,7 @@ html {
 
 body {
   background-color: #161616;
-  color: #fafafa;
+  color: #E5E5E5;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -207,7 +207,7 @@ p {
   padding: 5px 15px;
   border-radius: 10px;
   background: #161616;
-  color: white;
+  color: #E5E5E5;
   font-size: 1.5rem;
   font-weight: 800;
   border: 2px solid orange;
@@ -280,6 +280,34 @@ p {
   margin-top: 50px;
 }
 
+@media (max-width: 920px) {
+  .modal {
+    padding: 0.8rem;
+  }
+  .modal-text-container {
+    width: 90%;
+  }
+  .modal-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .modal-message {
+    font-size: 1rem;
+    line-height: 1.4;
+    width: 85%;
+  }
+}
+
+@media (max-width: 380px) {
+  .modal-title {
+    font-size: 1rem;
+    line-height: 1.4;
+    width: 85%;
+  }
+}
+
 .intro-container {
   height: 100vh;
   background-repeat: no-repeat;
@@ -311,12 +339,11 @@ p {
 
 .intro-select {
   -moz-appearance: none;
-  -webKit-appearance: none;
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
+  width: 400px;
   margin: 20px 15px;
   padding: 5px 15px;
-  width: 400px;
   background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid orange;
   border-radius: 20px;
@@ -345,6 +372,59 @@ p {
   letter-spacing: 0.1rem;
   font-weight: 800;
   margin-top: 50px;
+}
+
+@media (max-width: 1150px) {
+  .intro-heading {
+    font-size: 3rem;
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: 920px) {
+  .modal-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .intro-select {
+    width: 300px;
+    margin: 10px;
+    font-size: 1.2rem;
+  }
+  .intro-buttons input,
+  .intro-buttons button {
+    width: 300px;
+    margin: 10px;
+    font-size: 1.2rem;
+  }
+  .instructions-modal-credits {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .intro-textbox {
+    width: 90%;
+  }
+  .intro-heading {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .intro-select {
+    width: 270px;
+    margin: 8px;
+    font-size: 1rem;
+  }
+  .intro-buttons input,
+  .intro-buttons button {
+    width: 270px;
+    margin: 8px;
+  }
+  .instructions-close-button {
+    margin: 0 auto;
+  }
 }
 
 .quiz-heading {
@@ -401,6 +481,20 @@ p {
   text-align: left;
 }
 
+.trivia-question-counter {
+  margin-top: 20px;
+  float: right;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.trivia-question-counter {
+  margin-top: 20px;
+  float: right;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
 .trivia-difficulty {
   margin-bottom: 25px;
 }
@@ -417,6 +511,11 @@ p {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.answer-input-radio {
+  position: absolute;
+  right: 100%;
 }
 
 .radio-button-container {
@@ -441,19 +540,18 @@ p {
   padding: 7px 0;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-}
-
-.testRadio {
-  position: absolute;
-  right: 100%;
+  height: 100%;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
 }
 
 .submit-answer-button {
   width: 200px;
 }
 
-input:checked ~ label,
-input:focus ~ label {
+.answer-input-radio:checked ~ label,
+.answer-input-radio:focus ~ label {
   background-color: #C4A36E;
   color: black;
   -webkit-transition: all 1s;
@@ -495,12 +593,66 @@ input:focus ~ label {
 .gameover-modal-score {
   text-transform: uppercase;
   margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .trivia-question-container {
+    margin-top: 20px;
+    padding: 15px;
+  }
+  .trivia-category {
+    font-size: 1.5rem;
+  }
+  .trivia-question {
+    line-height: 1.3;
+    font-size: 1.0rem;
+  }
+  .trivia-question-counter {
+    font-size: 0.8rem;
+  }
+  .trivia-question-counter-output {
+    font-size: 0.8rem;
+  }
+  .trivia-question-total-output {
+    font-size: 0.8rem;
+  }
+  .answer-form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .radio-button-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 380px) {
+  .trivia-category {
+    font-size: 1.2rem;
+  }
+  .trivia-difficulty {
+    font-size: 0.8rem;
+  }
+  .score-box {
+    margin: 5px;
+    padding: 5px;
+  }
+  .score-box p {
+    font-size: 0.8rem;
+  }
 }
 
 main {
   background-image: url("../assets/black-light-bulbs.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: 85%;
   background-repeat: no-repeat;
   min-height: 100vh;
   max-height: 100vh;
