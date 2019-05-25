@@ -24,7 +24,7 @@
     <div class="error-modal modal">
       <div class="modal-text-container">
         <h2 class="modal-title">Uh Oh!</h2>
-        <p class="error-modal-message modal-message"></p>
+        <p class="error-modal-message modal-message" role="status" aria-live="polite"></p>
         <button class="error-close-button button" tabindex="1">close</button>
       </div>
     </div>
@@ -103,7 +103,7 @@
           <div class="instructions-modal modal">
             <div class="modal-text-container">
               <h2 class="modal-title"><i class="far fa-lightbulb" aria-hidden="true"></i> Trivia Game!</h2>
-              <p class="instructions-modal-message modal-message">
+              <p class="instructions-modal-message modal-message" role="status" aria-live="polite">
                 Welcome to our Trivia Game! This game is created with the Open Trivia Database
                 API. Please pick a trivia category and difficulty and you will get 10 questions to
                 answer from the API. Good luck!
@@ -123,7 +123,7 @@
       <div class="trivia-question-container">
         <h3 class="trivia-category"></h3>
         <p class="trivia-difficulty"></p>
-        <p class="trivia-question"></p>
+        <p class="trivia-question" aria-live="polite"></p>
 
         <p class="trivia-question-counter">Question <span class="trivia-question-counter-output">1</span> of <span
             class="trivia-question-total-output">10</span></p>
@@ -172,7 +172,7 @@
 
         <!-- game outcome modal -->
         <div class="gameover-modal modal">
-          <div class="gameover-modal-text-container modal-text-container">
+          <div class="gameover-modal-text-container modal-text-container" role="status" aria-live="polite">
             <h2 class="modal-title">Game Over</h2>
             <p class="modal-message">Thanks for Playing</p>
             <p class="gameover-modal-score"></p>
