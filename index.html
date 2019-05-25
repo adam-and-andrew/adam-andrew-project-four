@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
@@ -17,11 +17,22 @@
 
 <body>
   <main>
+
+    <!-- error modal -->
+    <div class="error-modal modal">
+      <div class="modal-text-container">
+        <h2 class="modal-title">Uh Oh!</h2>
+        <p class="error-modal-message modal-message"></p>
+        <button class="error-close-button button">close</button>
+      </div>
+    </div>
+    <!-- modal ends -->
+
     <section class="intro wrapper">
       <div class="intro-container">
         <div class="intro-textbox">
           <h1 class="intro-heading trivia-heading">
-            <span class="intro-heading-sub">Adam & Andrew's</span><br><i class="far fa-lightbulb"></i>
+            <span class="intro-heading-sub">Adam & Andrew's</span><br><i class="far fa-lightbulb" aria-hidden="true"></i>
             Trivia Game!
           </h1>
 
@@ -75,14 +86,14 @@
 
             <div class="intro-buttons">
               <button class="intro-show-instructions button">Instructions</button>
-              <input type="submit" value="play" id="intro-form-submit" class="intro-form-submit button" />
+              <input type="submit" value="play" id="intro-form-submit" class="intro-form-submit button">
             </div>
           </form>
 
           <!-- instructions modal -->
           <div class="instructions-modal modal">
             <div class="modal-text-container">
-              <h2 class="modal-title"><i class="far fa-lightbulb"></i> Trivia Game!</h2>
+              <h2 class="modal-title"><i class="far fa-lightbulb" aria-hidden="true"></i> Trivia Game!</h2>
               <p class="instructions-modal-message modal-message">
                 Welcome to our Trivia Game! This game is created with the Open Trivia Database
                 API. Please pick a trivia category and difficulty and you will get 10 questions to
@@ -94,15 +105,6 @@
           </div>
           <!-- modal ends -->
 
-          <!-- instructions modal -->
-          <div class="error-modal modal">
-            <div class="modal-text-container">
-              <h2 class="modal-title">Uh Oh!</h2>
-              <p class="error-modal-message modal-message"></p>
-              <button class="error-close-button button">close</button>
-            </div>
-          </div>
-          <!-- modal ends -->
         </div>
       </div>
     </section>
@@ -119,27 +121,27 @@
         <!-- user selection form ends -->
         <form class="answer-form">
           <div class="radio-button-container">
-            <input type="radio" value="1" name="testRadio" value="1" id="answer1" class="testRadio" />
+            <input type="radio" value="1" name="testRadio" value="1" id="answer1" class="testRadio" required>
             <label for="answer1" class="radio-button-label"></label>
           </div>
 
           <div class="radio-button-container">
-            <input type="radio" value="3" name="testRadio" value="2" id="answer2" class="testRadio" />
+            <input type="radio" value="3" name="testRadio" value="2" id="answer2" class="testRadio" required>
             <label for="answer2" class="radio-button-label"></label>
           </div>
 
           <div class="radio-button-container">
-            <input type="radio" value="2" name="testRadio" value="3" id="answer3" class="testRadio" />
+            <input type="radio" value="2" name="testRadio" value="3" id="answer3" class="testRadio" required>
             <label for="answer3" class="radio-button-label"></label>
           </div>
 
           <div class="radio-button-container">
-            <input type="radio" value="4" name="testRadio" value="4" id="answer4" class="testRadio" />
+            <input type="radio" value="4" name="testRadio" value="4" id="answer4" class="testRadio" required>
             <label for="answer4" class="radio-button-label"></label>
           </div>
 
           <label for="submit-answer-button" class="visuallyHidden">Submit</label>
-          <input type="submit" value="SUBMIT" id="submit-answer-button" class="submit-answer-button button" />
+          <input type="submit" value="SUBMIT" id="submit-answer-button" class="submit-answer-button button">
         </form>
         <!-- user selection form ends -->
 
@@ -156,9 +158,9 @@
           <div class="gameover-modal-text-container modal-text-container">
             <h2 class="modal-title">Game Over</h2>
             <p class="modal-message">Thanks for Playing</p>
-            <p class="gameover-modal-score">
-              score: <span class="player-score-output"></span>/10
-            </p>
+            <p class="gameover-modal-score"></p>
+
+            <button class="gameover-reset-button button">PLAY AGAIN</button>
           </div>
         </div>
         <!-- modals ends -->

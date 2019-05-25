@@ -252,7 +252,7 @@ p {
   border: 2px solid orange;
   background-color: #484646;
   width: 70%;
-  margin: 2% auto;
+  margin: 5% auto;
   padding: 1rem 0;
 }
 
@@ -386,10 +386,18 @@ p {
   margin-top: 100px;
 }
 
+.trivia-category {
+  text-transform: uppercase;
+  font-family: 'Righteous', sans-serif;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px #C4A36E;
+  margin-bottom: 5px;
+}
+
 .trivia-question {
   text-transform: uppercase;
   line-height: 1.6;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-align: left;
 }
 
@@ -455,6 +463,17 @@ input:focus ~ label {
 .answer-result {
   width: 100%;
   display: none;
+}
+
+.answer-result-title {
+  font-family: 'Righteous', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.answer-result-correct-answer {
+  text-transform: uppercase;
+  font-size: 1.3rem;
 }
 
 .player-scores-container {
