@@ -81,17 +81,6 @@ app.introScreen = function() {
       // make api call with user selections
       app.apiCall();
 
-      // fade out the intro screen and fades in the main game screen
-      $('.intro-container').fadeOut();
-      $('.quiz-container')
-        .delay(800)
-        .fadeIn();
-
-      // resets the div container holding the game back to flexbox from display: none to be properly centered
-      $('.quiz-container').css('display', 'flex');
-
-      // outputs the number of questions into the questions counter
-      $('.trivia-question-total-output').html(app.apiNumQuestions);
     }
 
     e.preventDefault();
@@ -168,13 +157,25 @@ app.apiCall = function() {
   }).then(data => {
     // if the response code is 0 then begins to parse the data, otherwise alerts that something went wrong
     if (data.response_code === 0) {
+      // fade out the intro screen and fades in the main game screen
+      $('.intro-container').fadeOut();
+      $('.quiz-container')
+        .delay(800)
+        .fadeIn();
+
+      // resets the div container holding the game back to flexbox from display: none to be properly centered
+      $('.quiz-container').css('display', 'flex');
+
+      // outputs the number of questions into the questions counter
+      $('.trivia-question-total-output').html(app.apiNumQuestions);
+
       app.triviaQuestionsArray = data.results;
 
       app.askQuestions();
 
     } else if (data.response_code === 1) {
       app.error(
-        `Sorry, Open Trivia DB doesn't have any results for your query. Please try another selection.`
+        `Sorry, Open Trivia DB doesn't have any results for your query. Please try another selection or combination.`
       );
     }
   });
