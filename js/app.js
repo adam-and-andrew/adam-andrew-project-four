@@ -62,8 +62,10 @@ app.introScreen = function() {
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();
 
-    // add additional questions based on number of players (5 extra per player)
-    app.apiNumQuestions += app.playerCount * 5;
+    app.playerCount = parseInt($('#trivia-players').val());
+
+    //updates the turn counter
+    app.playerTurnOutput();
 
     // validates that the user has made a selection
     if (app.category === null || app.apiDifficulty === null) {
@@ -71,15 +73,6 @@ app.introScreen = function() {
     } else {
       // make api call with user selections
       app.apiCall();
-
-      // get the number of players and convert string to integer number
-      app.playerCount = parseInt($('#trivia-players').val());
-
-      //updates the turn counter
-      app.playerTurnOutput();
-
-      //create score boxes
-      app.createPlayers();
     }
 
     e.preventDefault();
@@ -141,6 +134,12 @@ app.error = function(message) {
 
 // function that calls API
 app.apiCall = function() {
+  // get the number of players and convert string to integer number
+  app.playerCount = parseInt($('#trivia-players').val());
+
+  // add additional questions based on number of players (5 extra per player)
+  app.apiNumQuestions += app.playerCount * 5;
+
   $.ajax({
     url: 'https://opentdb.com/api.php',
     method: 'GET',
@@ -170,12 +169,17 @@ app.apiCall = function() {
 
       app.triviaQuestionsArray = data.results;
 
-      app.askQuestions();
+      //create score boxes
+      app.createPlayers();
 
+      app.askQuestions();
     } else if (data.response_code === 1) {
       app.error(
         `Sorry, Open Trivia DB doesn't have any results for your query. Please try another selection or combination.`
       );
+
+      //resets number questions to 5
+      app.apiNumQuestions = 5;
     }
   });
 };
@@ -317,7 +321,7 @@ app.gameOver = function() {
       const playerScoreOutput = $('<p>').html(
         `Player ${i + 1} Score: <br><span class="player${i + 1}-score-output">${scores[i]}</span>`
       );
-        
+
       const playerScoreBox = $('<div>')
         .addClass(`player${i}-score-box score-box`)
         .html(playerScoreOutput);
@@ -340,8 +344,3 @@ app.gameOver = function() {
 $(function() {
   app.init();
 });
-
-
-
-
-
