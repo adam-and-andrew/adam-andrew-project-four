@@ -61,15 +61,6 @@ app.introScreen = function() {
     // Get the information for the api call from the user for question category, question difficulty, and number of players
     app.apiCategory = $('#trivia-category').val();
     app.apiDifficulty = $('#trivia-difficulty').val();
-    
-    // get the number of players and convert string to integer number
-    app.playerCount = parseInt($('#trivia-players').val());
-
-    //updates the turn counter
-    app.playerTurnOutput();
-
-    //create score boxes
-    app.createPlayers();
 
     // add additional questions based on number of players (5 extra per player)
     app.apiNumQuestions += app.playerCount * 5;
@@ -81,6 +72,14 @@ app.introScreen = function() {
       // make api call with user selections
       app.apiCall();
 
+      // get the number of players and convert string to integer number
+      app.playerCount = parseInt($('#trivia-players').val());
+
+      //updates the turn counter
+      app.playerTurnOutput();
+
+      //create score boxes
+      app.createPlayers();
     }
 
     e.preventDefault();
